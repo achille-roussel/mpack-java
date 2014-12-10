@@ -21,7 +21,7 @@ import mpack.mpack;
 Usage
 -----
 
-Here's a quick example 
+Here's a quick example:
 ```java
 // All encoding operations are made through the mpack.encode static method,
 // there are overloads for most common Java types that have direct mapping

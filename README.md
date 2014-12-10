@@ -87,7 +87,7 @@ Test Suite
 ----------
 
 mpack-java comes with a test suite that runs with JUnit. If you're interested in
-running the test suite you can find instructions about how to setup JUnit at
+running the test suite you can find instructions about how to setup JUnit at  
 https://github.com/junit-team/junit/wiki/Download-and-Install
 
 Then simply run:

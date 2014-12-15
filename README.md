@@ -49,7 +49,7 @@ encoder.encode("hello");
 encoder.flush();
 
 ByteArrayInputStream istream = new ByteArrayInputStream(ostream.toByteArray());
-mpack.Decoder decoder = new mpack.Decoder(ostream);
+mpack.Decoder decoder = new mpack.Decoder(istream);
 
 // Integral values are always returned as java.lang.Long objects.
 Long obj1 = (Long) decoder.decode();

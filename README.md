@@ -57,7 +57,7 @@ Long obj1 = (Long) decoder.decode();
 // Booleans are returned as java.lang.Boolean objects.
 Boolean obj2 = (Boolean) decoder.decode();
 
-// And obvisouly UTF-8 strings are returned as java.lang.String objects.
+// And obviously UTF-8 strings are returned as java.lang.String objects.
 String obj3 = (String) decoder.decode(); 
 ```
 

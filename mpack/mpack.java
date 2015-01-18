@@ -25,6 +25,7 @@ package mpack;
 
 import java.lang.Boolean;
 import java.lang.Byte;
+import java.lang.ClassCastException;
 import java.lang.Double;
 import java.lang.Float;
 import java.lang.IllegalArgumentException;
@@ -401,6 +402,50 @@ class mpack {
       default:
         throw new IOException("mpack: decoder found unknown tag: " + tag);
       }
+    }
+
+    public final boolean decodeBoolean() throws IOException {
+      return (Boolean) this.decode();
+    }
+
+    public final byte decodeByte() throws IOException {
+      return this.decodeNumber().byteValue();
+    }
+
+    public final short decodeShort() throws IOException {
+      return this.decodeNumber().shortValue();
+    }
+
+    public final int decodeInt() throws IOException {
+      return this.decodeNumber().intValue();
+    }
+
+    public final long decodeLong() throws IOException {
+      return this.decodeNumber().longValue();
+    }
+
+    public final float decodeFloat() throws IOException {
+      return this.decodeNumber().floatValue();
+    }
+
+    public final double decodeDouble() throws IOException {
+      return this.decodeNumber().doubleValue();
+    }
+
+    public final Number decodeNumber() throws IOException {
+      return (Number) this.decode();
+    }
+
+    public final String decodeString() throws IOException {
+      return (String) this.decode();
+    }
+
+    public final byte[] decodeBinary() throws IOException {
+      return (byte[]) this.decode();
+    }
+
+    public final Extended decodeExtended() throws IOException {
+      return (Extended) this.decode();
     }
   }
 

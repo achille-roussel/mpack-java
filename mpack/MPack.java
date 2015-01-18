@@ -46,7 +46,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-class mpack {
+class MPack {
   private static final int NIL      = 0xc0;
   private static final int FALSE    = 0xc2;
   private static final int TRUE     = 0xc3;
@@ -400,7 +400,7 @@ class mpack {
         return this.decodeExt32();
 
       default:
-        throw new IOException("mpack: decoder found unknown tag: " + tag);
+        throw new IOException("MPack: decoder found unknown tag: " + tag);
       }
     }
 
@@ -925,7 +925,7 @@ class mpack {
         this.encodeExtended((Extended) object);
       }
       else {
-        throw new IllegalArgumentException("mpack: no encoding available for objects of type " + object.getClass().toString());
+        throw new IllegalArgumentException("MPack: no encoding available for objects of type " + object.getClass().toString());
       }
     }
 
@@ -935,7 +935,7 @@ class mpack {
 
   }
 
-  private mpack() { }
+  private MPack() { }
 
   public static Object decode(byte[] bytes) throws IOException {
     return decode(new ByteArrayInputStream(bytes));

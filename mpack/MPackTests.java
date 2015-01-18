@@ -37,7 +37,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-public class tests {
+public class MPackTests {
 
   private String makeString(int length) {
     final StringBuilder s = new StringBuilder(length);
@@ -76,7 +76,7 @@ public class tests {
   }
 
   private void testEncodeDecode(Object object, Object result) throws IOException {
-    assertEquals(result, mpack.decode(mpack.encode(object)));
+    assertEquals(result, MPack.decode(MPack.encode(object)));
   }
 
   @Test
@@ -190,28 +190,28 @@ public class tests {
   @Test
   public void testEncodeDecodeBin8() throws IOException {
     final byte[] base = makeBinary(20);
-    final byte[] copy = (byte[]) mpack.decode(mpack.encode(base));
+    final byte[] copy = (byte[]) MPack.decode(MPack.encode(base));
     assertEquals(true, Arrays.equals(base, copy));
   }
 
   @Test
   public void testEncodeDecodeBin16() throws IOException {
     final byte[] base = makeBinary(1000);
-    final byte[] copy = (byte[]) mpack.decode(mpack.encode(base));
+    final byte[] copy = (byte[]) MPack.decode(MPack.encode(base));
     assertEquals(true, Arrays.equals(base, copy));
   }
 
   @Test
   public void testEncodeDecodeBin32() throws IOException {
     final byte[] base = makeBinary(100000);
-    final byte[] copy = (byte[]) mpack.decode(mpack.encode(base));
+    final byte[] copy = (byte[]) MPack.decode(MPack.encode(base));
     assertEquals(true, Arrays.equals(base, copy));
   }
 
   @Test
   public void testEncodeDecodeFixArray() throws IOException {
     final List<?> base = makeList(10);
-    final List<?> copy = (List<?>) mpack.decode(mpack.encode(base));
+    final List<?> copy = (List<?>) MPack.decode(MPack.encode(base));
 
     final Iterator<?> it = base.iterator();
     final Iterator<?> jt = copy.iterator();
@@ -226,7 +226,7 @@ public class tests {
   @Test
   public void testEncodeDecodeArray16() throws IOException {
     final List<?> base = makeList(1000);
-    final List<?> copy = (List<?>) mpack.decode(mpack.encode(base));
+    final List<?> copy = (List<?>) MPack.decode(MPack.encode(base));
 
     final Iterator<?> it = base.iterator();
     final Iterator<?> jt = copy.iterator();
@@ -241,7 +241,7 @@ public class tests {
   @Test
   public void testEncodeDecodeArray32() throws IOException {
     final List<?> base = makeList(100000);
-    final List<?> copy = (List<?>) mpack.decode(mpack.encode(base));
+    final List<?> copy = (List<?>) MPack.decode(MPack.encode(base));
 
     final Iterator<?> it = base.iterator();
     final Iterator<?> jt = copy.iterator();
@@ -256,7 +256,7 @@ public class tests {
   @Test
   public void testEncodeDecodeFixMap() throws IOException {
     final Map<?, ?> base = makeMap(10);
-    final Map<?, ?> copy = (Map<?, ?>) mpack.decode(mpack.encode(base));
+    final Map<?, ?> copy = (Map<?, ?>) MPack.decode(MPack.encode(base));
 
     assertEquals(base.size(), copy.size());
 
@@ -269,8 +269,8 @@ public class tests {
 
   @Test
   public void testEncodeDecodeFixExt1() throws IOException {
-    final mpack.Extended base = new mpack.Extended(42, new byte[1]);
-    final mpack.Extended copy = (mpack.Extended) mpack.decode(mpack.encode(base));
+    final MPack.Extended base = new MPack.Extended(42, new byte[1]);
+    final MPack.Extended copy = (MPack.Extended) MPack.decode(MPack.encode(base));
 
     assertEquals(base.type, copy.type);
     assertEquals(base.data.length, copy.data.length);
@@ -278,8 +278,8 @@ public class tests {
 
   @Test
   public void testEncodeDecodeFixExt2() throws IOException {
-    final mpack.Extended base = new mpack.Extended(42, new byte[2]);
-    final mpack.Extended copy = (mpack.Extended) mpack.decode(mpack.encode(base));
+    final MPack.Extended base = new MPack.Extended(42, new byte[2]);
+    final MPack.Extended copy = (MPack.Extended) MPack.decode(MPack.encode(base));
 
     assertEquals(base.type, copy.type);
     assertEquals(base.data.length, copy.data.length);
@@ -287,8 +287,8 @@ public class tests {
 
   @Test
   public void testEncodeDecodeFixExt4() throws IOException {
-    final mpack.Extended base = new mpack.Extended(42, new byte[4]);
-    final mpack.Extended copy = (mpack.Extended) mpack.decode(mpack.encode(base));
+    final MPack.Extended base = new MPack.Extended(42, new byte[4]);
+    final MPack.Extended copy = (MPack.Extended) MPack.decode(MPack.encode(base));
 
     assertEquals(base.type, copy.type);
     assertEquals(base.data.length, copy.data.length);
@@ -296,8 +296,8 @@ public class tests {
 
   @Test
   public void testEncodeDecodeFixExt8() throws IOException {
-    final mpack.Extended base = new mpack.Extended(42, new byte[8]);
-    final mpack.Extended copy = (mpack.Extended) mpack.decode(mpack.encode(base));
+    final MPack.Extended base = new MPack.Extended(42, new byte[8]);
+    final MPack.Extended copy = (MPack.Extended) MPack.decode(MPack.encode(base));
 
     assertEquals(base.type, copy.type);
     assertEquals(base.data.length, copy.data.length);
@@ -305,8 +305,8 @@ public class tests {
 
   @Test
   public void testEncodeDecodeFixExt16() throws IOException {
-    final mpack.Extended base = new mpack.Extended(42, new byte[16]);
-    final mpack.Extended copy = (mpack.Extended) mpack.decode(mpack.encode(base));
+    final MPack.Extended base = new MPack.Extended(42, new byte[16]);
+    final MPack.Extended copy = (MPack.Extended) MPack.decode(MPack.encode(base));
 
     assertEquals(base.type, copy.type);
     assertEquals(base.data.length, copy.data.length);
@@ -314,8 +314,8 @@ public class tests {
 
   @Test
   public void testEncodeDecodeExt8() throws IOException {
-    final mpack.Extended base = new mpack.Extended(42, new byte[20]);
-    final mpack.Extended copy = (mpack.Extended) mpack.decode(mpack.encode(base));
+    final MPack.Extended base = new MPack.Extended(42, new byte[20]);
+    final MPack.Extended copy = (MPack.Extended) MPack.decode(MPack.encode(base));
 
     assertEquals(base.type, copy.type);
     assertEquals(base.data.length, copy.data.length);
@@ -323,8 +323,8 @@ public class tests {
 
   @Test
   public void testEncodeDecodeExt16() throws IOException {
-    final mpack.Extended base = new mpack.Extended(42, new byte[1000]);
-    final mpack.Extended copy = (mpack.Extended) mpack.decode(mpack.encode(base));
+    final MPack.Extended base = new MPack.Extended(42, new byte[1000]);
+    final MPack.Extended copy = (MPack.Extended) MPack.decode(MPack.encode(base));
 
     assertEquals(base.type, copy.type);
     assertEquals(base.data.length, copy.data.length);
@@ -332,8 +332,8 @@ public class tests {
 
   @Test
   public void testEncodeDecodeExt32() throws IOException {
-    final mpack.Extended base = new mpack.Extended(42, new byte[100000]);
-    final mpack.Extended copy = (mpack.Extended) mpack.decode(mpack.encode(base));
+    final MPack.Extended base = new MPack.Extended(42, new byte[100000]);
+    final MPack.Extended copy = (MPack.Extended) MPack.decode(MPack.encode(base));
 
     assertEquals(base.type, copy.type);
     assertEquals(base.data.length, copy.data.length);

@@ -25,6 +25,7 @@ package mpack;
 
 import java.lang.Boolean;
 import java.lang.Byte;
+import java.lang.Class;
 import java.lang.ClassCastException;
 import java.lang.Double;
 import java.lang.Float;
@@ -446,6 +447,33 @@ public class MPack {
 
     public final Extended decodeExtended() throws IOException {
       return (Extended) this.decode();
+    }
+
+    @SuppressWarnings("unchecked")
+    public final <T> List<T> decodeList(Class<T> elementClass) throws IOException {
+      final List<?> list = (List) this.decode();
+      for (Object obj : list) {
+        if (!elementClass.isAssignableFrom(obj.getClass())) {
+          throw new ClassCastException("unexpected type found while decoding list: " + obj.getClass().toString());
+        }
+      }
+      return (List<T>) list;
+    }
+
+    @SuppressWarnings("unchecked")
+    public final <K, V> Map<K, V> decodeMap(Class<K> keyClass, Class<V> valueClass) throws IOException {
+      final Map<?, ?> map = (Map) this.decode();
+      for (Map.Entry<?, ?> entry : map.entrySet()) {
+        final Object key = entry.getKey();
+        final Object value = entry.getValue();
+        if (!keyClass.isAssignableFrom(key.getClass())) {
+          throw new ClassCastException("unexpected type found while decoding map key: " + key.getClass().toString());
+        }
+        if (!valueClass.isAssignableFrom(value.getClass())) {
+          throw new ClassCastException("unexpected type found while decoding map value: " + value.getClass().toString());
+        }
+      }
+      return (Map<K, V>) map;
     }
   }
 

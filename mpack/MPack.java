@@ -46,7 +46,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-class MPack {
+public class MPack {
   private static final int NIL      = 0xc0;
   private static final int FALSE    = 0xc2;
   private static final int TRUE     = 0xc3;

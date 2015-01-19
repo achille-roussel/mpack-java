@@ -10,13 +10,8 @@ bloating mobile app executables.
 Install
 -------
 
-To install mpack-java simple copy mpack/mpack.java in your project then import
-the module:
-```java
-import mpack.MPack;
-
-...
-```
+To install mpack-java simply copy MPack.java in your project then import
+the module.
 
 Usage
 -----

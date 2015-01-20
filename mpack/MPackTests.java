@@ -268,6 +268,34 @@ public class MPackTests {
   }
 
   @Test
+  public void testEncodeDecodeMap16() throws IOException {
+    final Map<?, ?> base = makeMap(1000);
+    final Map<?, ?> copy = (Map<?, ?>) MPack.decode(MPack.encode(base));
+
+    assertEquals(base.size(), copy.size());
+
+    for (Object key : copy.keySet()) {
+      final Object v1 = base.get(key);
+      final Object v2 = copy.get(key);
+      assertEquals(v1, v2);
+    }
+  }
+
+  @Test
+  public void testEncodeDecodeMap32() throws IOException {
+    final Map<?, ?> base = makeMap(100000);
+    final Map<?, ?> copy = (Map<?, ?>) MPack.decode(MPack.encode(base));
+
+    assertEquals(base.size(), copy.size());
+
+    for (Object key : copy.keySet()) {
+      final Object v1 = base.get(key);
+      final Object v2 = copy.get(key);
+      assertEquals(v1, v2);
+    }
+  }
+
+  @Test
   public void testEncodeDecodeFixExt1() throws IOException {
     final MPack.Extended base = new MPack.Extended(42, new byte[1]);
     final MPack.Extended copy = (MPack.Extended) MPack.decode(MPack.encode(base));
